@@ -11,7 +11,9 @@ function join_click(){
             if (response['status'] == "Account Created"){
                 alert(response['status']);
                 $("#signup_div").fadeOut();
-                $("#chatrooms_div").show();
+                //$("#chatrooms_div").show();
+                $("#login_div").show();
+                
             }
             else{
                 $("#status").text(response['status']);
@@ -24,6 +26,27 @@ function join_click(){
     });
 }
 
+function login_click(){
+    var username = $("#username2").val();
+    var password = $("#password2").val();
+    var data = {"username": username, "password": password,};
+    $.ajax({
+        url: "login",
+        method: "POST",
+        data: data,
+        success: function(response){
+            if (response['status'] == true){
+                alert(response['status']);
+                $("#login_div").fadeOut();
+                $("#chatrooms_div").show();
+            }
+            else{
+                $("#status2").text("Unknown User");
+            }
+        },
+    });
+}
+
 function choose_chatroom(){
     $.ajax({
         url: "getChatRooms",
@@ -32,10 +55,21 @@ function choose_chatroom(){
             chatrooms = response['chatrooms'];
             for(i=0; i<chatrooms.length;i++){
                 // $('#chattable').append(`<tr>${chatrooms[i][0]}<tr>`);
-                $("#chattable > tbody").append(`<tr><td>${chatrooms[i][0]}</td><td>${chatrooms[i][1]}</td><td>${chatrooms[i][2]}</td><td><a href="chatroom/${chatrooms[i][0]}" target="_blank">View</a></td></tr>`);
+                row = `<tr><td>${chatrooms[i][0]}</td>`
+                row += `<td>${chatrooms[i][1]}</td>`
+                row += `<td>${chatrooms[i][2]}</td>`
+                row += `<td><button onclick="getChatRoom(${chatrooms[i][0]})">View</button></td></tr>`
+                $("#chattable > tbody").append(row);
                 console.log(chatrooms[i][0]);
                 $("#choose_chatroom_btn").prop('disabled', true);
             }
         }
     });
+}
+
+function getChatRoom(chatroom_number){
+    console.log(chatroom_number);
+    $('#chatroom').show();
+    //need add a table to see the members of the group
+    $('#populate').html(chatroom_number);
 }

@@ -29,10 +29,32 @@
                 </table>
             </div>
             <div>
-                <a href="login">Already have an Account?</a>
+                <font id="status" color="red"></font>
+            </div>
+        </div>
+        <div id="login_div" hidden>
+            <div>
+                <table>
+                    <tr>
+                        <td>UserId</td>
+                        <td><input type="text" id="username2"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" id="password2"></td>
+                    </tr>
+                </table>
             </div>
             <div>
-                <font id="status" color="red"></font>
+                <table>
+                    <tr>
+                        <td><button id="login_btn" onclick="login_click()">Login</button></td>
+                        <td><button id="clear_btn2">Clear</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <font id="status2" color="red"></font>
             </div>
         </div>
         <div id="chatrooms_div" hidden>
@@ -41,9 +63,11 @@
                 <tbody>
                     <tr><td></td></tr>
                 </tbody>
-                <tfoot>
-                    <tr><td></td></tr>
-                </tfoot>
+            </table>
+        </div>
+        <div id="chatroom" hidden>
+            <table>
+                <font id="populate"></font>
             </table>
         </div>
     </body>

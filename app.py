@@ -1,4 +1,3 @@
-from colorama import Cursor
 from flask import Flask, redirect
 from flask import request, redirect
 from flask import render_template
@@ -55,6 +54,17 @@ class User(Resource):
             status = f"{username} is unavailable"
         return {'status': status}
 
+class Authenticate(Resource):
+    def post(self):
+        username = request.form.get("username")
+        password = request.form.get("password")
+        db = sqlite3.connect('db.sqlite')
+        query = f'SELECT * FROM Users WHERE Username="{username}" and Password="{password}"'
+        cursor = db.cursor()
+        status = cursor.execute(query).fetchone()
+        print(query, status, 11111)
+        return {"status": bool(status)}
+
 class ChatRooms(Resource):
     def get(self):
         db = sqlite3.connect("db.sqlite")
@@ -69,6 +79,7 @@ class ChatRoom(Resource):
         return redirect("/work_in_progress")
 
 api.add_resource(User, "/join")
+api.add_resource(Authenticate, "/login")
 api.add_resource(ChatRooms, "/getChatRooms")
 api.add_resource(ChatRoom, "/chatroom/<int:chatroom_number>")
 
