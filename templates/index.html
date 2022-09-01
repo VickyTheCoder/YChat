@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Home Page</title>
+    </head>
+    <body>
+        <div id="signup_div">
+            <div>
+                <table>
+                    <tr>
+                        <td>UserId</td>
+                        <td><input type="text" id="username"></td>
+                    </tr>
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" id="password"></td>
+                    </tr>
+                    <tr>
+                        <td>Mobile</td>
+                        <td><input type="text" id="mobile" placeholder="Optional"></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td><button id="join_btn" onclick="join_click()">Join</button></td>
+                        <td><button id="clear_btn">Clear</button></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <a href="login">Already have an Account?</a>
+            </div>
+            <div>
+                <font id="status" color="red"></font>
+            </div>
+        </div>
+        <div id="chatrooms_div" hidden>
+            <button id="choose_chatroom_btn" onclick="choose_chatroom()">Choose Chat Room</button>
+            <table id="chattable">
+                <tbody>
+                    <tr><td></td></tr>
+                </tbody>
+                <tfoot>
+                    <tr><td></td></tr>
+                </tfoot>
+            </table>
+        </div>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="static/js/api_call.js"></script>
+</html>
